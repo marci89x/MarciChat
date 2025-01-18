@@ -153,20 +153,22 @@
                 'hányóra?': `Most ${new Date().toLocaleTimeString()} van.`,
                 'hányóravan': `Most ${new Date().toLocaleTimeString()} van.`,
                 'hányóravan?': `Most ${new Date().toLocaleTimeString()} van.`,
-                'napiüzenet': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzenet?': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzenetma': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzenetma?': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
-                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
-                'hányadika': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'hányadika?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennap': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennap?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennapvan': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennapvan?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`
+                'milyenazidő': 'Jelenleg nem tudom az időjárást, de remélem, szép napod lesz!',
+                'milyenazidőjárás': 'Jelenleg nem tudom az időjárást, de remélem, szép napod lesz!',
+                'milyenidővan': 'Jelenleg nem tudom az időjárást, de remélem, szép napod lesz!',
+                'mondjegyviccet': 'Miért nem megy be a csiga a kocsmába? Mert nincs kedve!',
+                'vicc': 'Miért nem megy be a csiga a kocsmába? Mert nincs kedve!',
+                'viccetkérek': 'Miért nem megy be a csiga a kocsmába? Mert nincs kedve!',
+                'inspiráció': 'Ne feledd, minden nap egy új lehetőség a fejlődésre!',
+                'motiváció': 'Ne feledd, minden nap egy új lehetőség a fejlődésre!',
+                'bátorítás': 'Ne feledd, minden nap egy új lehetőség a fejlődésre!',
+                'miakedvencszíned': 'A kedvenc színem a kék, mert nyugtató és békés!',
+                'kedvencszín': 'A kedvenc színem a kék, mert nyugtató és békés!',
+                'miakedvencételed': 'A kedvenc ételem a pizza, mert sokféleképpen elkészíthető!',
+                'kedvencétel': 'A kedvenc ételem a pizza, mert sokféleképpen elkészíthető!',
+                'napitipp': 'Ma próbálj meg legalább 10 percet szánni a relaxációra!',
+                'tipp': 'Ma próbálj meg legalább 10 percet szánni a relaxációra!',
+                'tanács': 'Ma próbálj meg legalább 10 percet szánni a relaxációra!'
             };
 
             if (responses[cleanedInput]) {
@@ -199,6 +201,4 @@
 
                 const timestampElement = document.createElement('div');
                 timestampElement.className = 'timestamp';
-                timestampElement.innerText = message.timestamp;
-                message
-
+                timestampElement.innerText = message
