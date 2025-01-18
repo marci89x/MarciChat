@@ -152,7 +152,21 @@
                 'hányóra': `Most ${new Date().toLocaleTimeString()} van.`,
                 'hányóra?': `Most ${new Date().toLocaleTimeString()} van.`,
                 'hányóravan': `Most ${new Date().toLocaleTimeString()} van.`,
-                'hányóravan?': `Most ${new Date().toLocaleTimeString()} van.`
+                'hányóravan?': `Most ${new Date().toLocaleTimeString()} van.`,
+                'napiüzenet': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenet?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenetma': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenetma?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'hányadika': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'hányadika?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennap': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennap?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennapvan': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennapvan?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`
             };
 
             if (responses[cleanedInput]) {
@@ -186,55 +200,4 @@
                 const timestampElement = document.createElement('div');
                 timestampElement.className = 'timestamp';
                 timestampElement.innerText = message.timestamp;
-                messageContainer.appendChild(timestampElement);
-
-                const userInputElement = document.createElement('div');
-                userInputElement.className = 'message';
-                userInputElement.innerText = message.userInput;
-
-                messageContainer.appendChild(userInputElement);
-
-                const responseElement = document.createElement('div');
-                responseElement.className = 'message response';
-                responseElement.innerHTML = `${message.response}<img src="speaker_icon.png" class="icon" onclick="readResponse('${message.response}')" alt="Speaker">`;
-                messageContainer.appendChild(responseElement);
-
-                chatContainer.appendChild(messageContainer);
-                chatContainer.appendChild(separator);
-            });
-        }
-
-        function readResponse(responseText) {
-            const speech = new SpeechSynthesisUtterance(responseText);
-            speech.lang = 'hu-HU'; // Explicit módon beállítjuk a nyelvet magyarra
-            speech.volume = 1.2;
-            window.speechSynthesis.speak(speech);
-        }
-
-        function changeBackgroundColor(color) {
-            document.body.style.backgroundColor = color;
-            if (color === 'white') {
-                document.body.style.color = 'black';
-            } else {
-                document.body.style.color = 'white';
-            }
-            updateArrowPosition(color);
-        }
-
-        function updateArrowPosition(selectedColor) {
-            const colorOptions = document.querySelectorAll('.colorOption');
-            colorOptions.forEach(option => {
-                const borderColor = option.style.backgroundColor;
-                if (borderColor === selectedColor) {
-                    option.classList.add('active');
-                } else {
-                    option.classList.remove('active');
-                }
-            });
-        }
-
-        // Alapértelmezett szín és nyíl pozíció beállítása induláskor
-        changeBackgroundColor('darkblue');
-    </script>
-</body>
-</html>
+                message
