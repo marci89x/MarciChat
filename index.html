@@ -152,7 +152,17 @@
                 'hányóra': `Most ${new Date().toLocaleTimeString()} van.`,
                 'hányóra?': `Most ${new Date().toLocaleTimeString()} van.`,
                 'hányóravan': `Most ${new Date().toLocaleTimeString()} van.`,
-                'hányóravan?': `Most ${new Date().toLocaleTimeString()} van.`
+                'hányóravan?': `Most ${new Date().toLocaleTimeString()} van.`,
+                'napiüzenet': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenet?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenetma': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenetma?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!'
             };
 
             if (responses[cleanedInput]) {
@@ -211,30 +221,219 @@
             window.speechSynthesis.speak(speech);
         }
 
-        function changeBackgroundColor(color) {
-            document.body.style.backgroundColor = color;
-            if (color === 'white') {
-                document.body.style.color = 'black';
-            } else {
-                document.body.style.color = 'white';
-            }
-            updateArrowPosition(color);
-        }
+        function changeBackground
 
-        function updateArrowPosition(selectedColor) {
-            const colorOptions = document.querySelectorAll('.colorOption');
-            colorOptions.forEach(option => {
-                const borderColor = option.style.backgroundColor;
-                if (borderColor === selectedColor) {
-                    option.classList.add('active');
-                } else {
-                    option.classList.remove('active');
+Szerkesztés a(z) Pages appban
+
+5/30 válasz
+Az AI által létrehozott tartalmak helytelenek lehetnek.
+
+
+2025. január 18. 08:53
+You said:Hányadika van? Milyen nap van? (ezeknek a varriációi)--> (Ide beírja hogy Ma ÉV HÓ NAP van)
+Copilot said:
+Rendben, hozzáadom a dátum lekérdezésére szolgáló parancsokat is. Íme a frissített kód:
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>MarciChat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: darkblue; /* Sötétkék háttér */
+            color: white;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        p {
+            font-size: 18px;
+        }
+        #chat-container {
+            display: flex;
+            flex-direction: column-reverse;
+            margin-top: 20px;
+        }
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #cccccc;
+            white-space: nowrap;
+            margin-bottom: 5px;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #003366;
+            color: white;
+            width: fit-content;
+        }
+        .response {
+            margin-left: 20px;
+        }
+        .icon {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+        .separator {
+            border-top: 1px solid #cccccc;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #colorPicker {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .colorOption {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        .colorOption::after {
+            content: ''; /* A nyíl mutató */
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid white;
+            display: none; /* Alapértelmezés szerint rejtett */
+        }
+        .active::after {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>MarciChat</h1>
+    <p>Írj be bármit az alábbi mezőbe vagy használd a mikrofont, és Marci válaszol neked!</p>
+    <div>
+        <input type="text" id="userInput" placeholder="Írj be valamit..." onkeydown="if (event.key === 'Enter') generateResponse()">
+        <img src="microphone_icon.png" class="icon" onclick="startRecognition()" alt="Microphone">
+    </div>
+    <button onclick="generateResponse()">Küldés</button>
+    <div id="chat-container">
+        <!-- Előzmények itt jelennek meg -->
+    </div>
+    <div id="colorPicker">
+        <div class="colorOption" style="background-color: blue;" onclick="changeBackgroundColor('blue')"></div>
+        <div class="colorOption" style="background-color: darkblue;" onclick="changeBackgroundColor('darkblue')"></div>
+        <div class="colorOption" style="background-color: black;" onclick="changeBackgroundColor('black')"></div>
+        <div class="colorOption" style="background-color: white;" onclick="changeBackgroundColor('white')"></div>
+        <div class="colorOption" style="background-color: green;" onclick="changeBackgroundColor('green')"></div>
+        <div class="colorOption" style="background-color: red;" onclick="changeBackgroundColor('red')"></div>
+    </div>
+
+    <script>
+        function startRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'hu-HU';
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('userInput').value = transcript;
+            };
+
+            recognition.onerror = function(event) {
+                document.getElementById('response').innerText = 'Hiba történt a hangfelismerés során: ' + event.error;
+            };
+
+            recognition.onend = function() {
+                if (document.getElementById('userInput').value) {
+                    generateResponse();
                 }
-            });
+            };
+
+            recognition.start();
         }
 
-        // Alapértelmezett szín és nyíl pozíció beállítása induláskor
-        changeBackgroundColor('darkblue');
-    </script>
-</body>
-</html>
+        const chatContainer = document.getElementById('chat-container');
+        let history = [];
+
+        function generateResponse() {
+            const userInput = document.getElementById('userInput').value;
+            const cleanedInput = userInput.toLowerCase().replace(/[!.,\s]/g, '');
+            let response;
+
+            const responses = {
+                'szia': 'Szia! Miben segíthetek?',
+                'hogyvagy': 'Köszönöm, Én jólvagyok. És te?',
+                'hogyvagyma': 'Köszönöm, Én jólvagyok. És te?',        
+                'hogyvagy?': 'Köszönöm, Én jólvagyok. És te?',
+                'hogyvagyma?': 'Köszönöm, Én jólvagyok. És te?',
+                'hogvagy': 'Köszönöm, Én jólvagyok. És te?',
+                'hogvagyma': 'Köszönöm, Én jólvagyok. És te?',
+                'mennyiidővan': `Most ${new Date().toLocaleTimeString()} van.`,
+                'mennyiidővan?': `Most ${new Date().toLocaleTimeString()} van.`,
+                'hányóra': `Most ${new Date().toLocaleTimeString()} van.`,
+                'hányóra?': `Most ${new Date().toLocaleTimeString()} van.`,
+                'hányóravan': `Most ${new Date().toLocaleTimeString()} van.`,
+                'hányóravan?': `Most ${new Date().toLocaleTimeString()} van.`,
+                'napiüzenet': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenet?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenetma': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzenetma?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi': 'Ez a napi üzeneted: Legyen szép napod!',
+                'napiüzi?': 'Ez a napi üzeneted: Legyen szép napod!',
+                'hányadika': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'hányadika?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennap': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennap?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennapvan': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
+                'milyennapvan?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`
+            };
+
+            if (responses[cleanedInput]) {
+                response = responses[cleanedInput];
+            } else {
+                response = 'Erre nem tudok válaszolni.';
+            }
+
+            addMessageToHistory(userInput, response);
+            renderHistory();
+            document.getElementById('userInput').value = '';
+        }
+
+        function addMessageToHistory(userInput, response) {
+            const timestamp = new Date().toLocaleTimeString();
+            history.push({ userInput, response, timestamp });
+            if (history.length > 10) {
+                history.shift();
+            }
+        }
+
+        function renderHistory() {
+            chatContainer.innerHTML = '';
+            history.forEach(message => {
+                const separator = document.createElement('div');
+                separator.className = 'separator';
+
+                const messageContainer = document.createElement('div');
+                messageContainer.className = 'message-container';
+
+                const timestampElement = document.createElement('div');
+                timestampElement.className = 'timestamp';
+                timestampElement.innerText = message.timestamp;
+                message
