@@ -206,7 +206,7 @@
 
         function readResponse(responseText) {
             const speech = new SpeechSynthesisUtterance(responseText);
-            speech.lang = 'hu-HU';
+            speech.lang = 'hu-HU'; // Explicit módon beállítjuk a nyelvet magyarra
             speech.volume = 1.2;
             window.speechSynthesis.speak(speech);
         }
@@ -234,7 +234,4 @@
         }
 
         // Alapértelmezett szín és nyíl pozíció beállítása induláskor
-        changeBackgroundColor('darkblue');
-    </script>
-</body>
-</html>
+        changeBackground
