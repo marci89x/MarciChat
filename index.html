@@ -192,12 +192,3 @@
             chatContainer.innerHTML = '';
             history.forEach(message => {
                 const separator = document.createElement('div');
-                separator.className = 'separator';
-
-                const messageContainer = document.createElement('div');
-                messageContainer.className = 'message-container';
-
-                const timestampElement = document.createElement('div');
-                timestampElement.className = 'timestamp';
-                timestampElement.innerText = message.timestamp;
-                message
