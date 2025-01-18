@@ -136,7 +136,9 @@
 
         function generateResponse() {
             const userInput = document.getElementById('userInput').value;
+            console.log('Felhasználói input:', userInput); // Naplózás a konzolba
             const cleanedInput = userInput.toLowerCase().replace(/[!.,\s]/g, '');
+            console.log('Tisztított input:', cleanedInput); // Naplózás a konzolba
             let response;
 
             const responses = {
@@ -164,31 +166,4 @@
                 'hányadika': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
                 'hányadika?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
                 'milyennap': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennap?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennapvan': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`,
-                'milyennapvan?': `Ma ${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })} van.`
-            };
-
-            if (responses[cleanedInput]) {
-                response = responses[cleanedInput];
-            } else {
-                response = 'Erre nem tudok válaszolni.';
-            }
-
-            addMessageToHistory(userInput, response);
-            renderHistory();
-            document.getElementById('userInput').value = '';
-        }
-
-        function addMessageToHistory(userInput, response) {
-            const timestamp = new Date().toLocaleTimeString();
-            history.push({ userInput, response, timestamp });
-            if (history.length > 10) {
-                history.shift();
-            }
-        }
-
-        function renderHistory() {
-            chatContainer.innerHTML = '';
-            history.forEach(message => {
-                const separator = document.createElement('div');
+                'milyennap?': `
